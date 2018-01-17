@@ -13,7 +13,7 @@ session_start();
   $password = "";
   $password2 = "";
   $date = "";
-  $error_array = "";
+  $error_array = array();
 
   if (isset($_POST['register_button'])) {
     // registration form values plus strip tags for security purposes
@@ -52,26 +52,27 @@ session_start();
 
         // Count number of rows returned
         $num_rows = mysqli_num_rows($email_check);
+
           if($num_rows > 0) {
-            echo "Email already in use.";
+            array_push($error_array, "Email already in use.<br>");
           } else {
-            echo "Emails do not match.";
+            array_push($error_array, "Emails do not match.<br>");
           }
           if(strlen($firstname) > 25 || strlen($firstname) < 2) {
-            echo "Your first name must be between 2 and 25 characters.";
+            array_push($error_array, "Your first name must be between 2 and 25 characters.");
           }
           if(strlen($lastname) > 25 || strlen($lastname) < 2) {
-            echo "Your last name must be between 2 and 25 characters.";
+            array_push($error_array, "Your last name must be between 2 and 25 characters.");
           }
           if($password != $password2) {
-            echo "Your passwords do not match.";
+            array_push($error_array, "Your passwords do not match.");
           } else {
             if(preg_match('/[^A-Za-z0-9]/', $password)) {
-              echo "Your password can only contain characters or numbers.";
+              array_push($error_array, "Your password can only contain characters or numbers.");
             }
           }
           if(strlen($password > 30 || strlen($password) < 5)) {
-            echo "Your password must be between 5 and 30 characters.";
+            array_push($error_array, "Your password must be between 5 and 30 characters.");
           }
       }
     }
