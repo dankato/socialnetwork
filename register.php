@@ -98,6 +98,22 @@ session_start();
         $username = $username . "_" . $i;
         $check_username_query = mysqli_query($con, "SELECT username FROM users WHERE username='$username'");
       }
+
+      // profile pics
+      $random = rand(1, 2); // random between 1-2
+      if($random == 1)
+        $profile_pic = "assets/images/profile_pics/defaults/profile-ninja.png";
+      else if($random == 2)
+        $profile_pic = "assets/images/profile_pics/defaults/profile-astronaut.png";
+      $query = mysqli_query($con, "INSERT INTO users VALUES ('', '$firstname', '$lastname', '$username', '$email', '$password', '$date', '$profile_pic', '0', '0', 'no', ',')");
+      array_push($error_array, "<span style='color: #14C800;'>Login sucessful.</span><br>");
+
+      // clear session vars
+      $_SESSION['reg_first_name'] = "";
+      $_SESSION['reg_last_name'] = "";
+      $_SESSION['reg_email'] = "";
+      $_SESSION['reg_email2'] = "";
+
     }
 
   }
@@ -157,6 +173,10 @@ session_start();
       ?>
 
       <input type="submit" name="register_button" value="register">
+      <br>
+      <?php if(in_array("<span style='color: #14C800;'>Login sucessful.</span><br>", $error_array)) echo "<span style='color: #14C800;'>Login sucessful.</span><br>"; ?>
+
+
     </form>
   </body>
 </html>
