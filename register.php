@@ -10,6 +10,14 @@ require 'includes/form_handlers/register_handler.php';
     <title>Register</title>
   </head>
   <body>
+
+    <form action="register.php" method="post">
+      <input type="email" name="log_email" placeholder="Email Address"><br>
+      <input type="password" name="log_password" placeholder="Password"><br>
+      <input type="submit" name="log_button" value="Login">
+    </form>
+
+
     <form class="" action="register.php" method="post">
       <input type="text" name="reg_first_name" placeholder="first name" value="<?php if(isset($_SESSION['reg_first_name'])) {
         echo $_SESSION['reg_first_name'];
