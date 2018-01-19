@@ -10,7 +10,7 @@
     <meta charset="utf-8">
     <title>Register</title>
     <link rel="stylesheet" href="assets/css/register_style.css">
-    <link href="https://fonts.googleapis.com/css?family=Cabin:400,500,600,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:400,400i,600,600i,700,700i" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="assets/js/register.js"></script>
   </head>

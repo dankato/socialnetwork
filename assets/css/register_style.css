@@ -9,11 +9,15 @@ body {
 body {
   margin: 0;
   padding: 0;
-  font-family: "Cabin", "Helvetica", sans-serif;
+  font-family: "Josefin Sans", sans-serif;
 }
 a {
   text-decoration: none;
   color: #b4b4b4;
+}
+form {
+  padding-bottom: 10px;
+  /* margin-top: 10px; */
 }
 .wrapper {
   background-image: url(../images/backgrounds/desktop.jpg);
@@ -31,7 +35,7 @@ a {
   background-color: white;
   border: 1px solid #ededed;
   border-radius: 2px;
-  padding: 7px;
+  padding: 1px;
   opacity: 0.96;
 }
 .login_header {
@@ -47,11 +51,12 @@ a {
   margin-top: 0;
   margin-bottom: 0;
   color: #353535;
-  font-family: "Cabin", "Helvetica", sans-serif;
+  font-family: "Josefin Sans", sans-serif;
   font-weight: 700;
   /* text-shadow: #141414 0.2px 0.2px; */
   font-size: 200%;
   padding: 3px;
+  padding-top: 14px;
 }
 input[type="submit"] {
   background-color: #b4b4b4;

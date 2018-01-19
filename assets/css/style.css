@@ -1,0 +1,23 @@
+body {
+  line-height: 17px;
+}
+
+.top_bar {
+  width: 100%;
+  min-width: 1050px;
+  height: 40px;
+  margin: 0 0 10px 0;
+  display: inline-flex;
+  background-color: #b4b4b4;
+  border-bottom: 0.25em solid #ededed;
+}
+.logo a {
+  font-family: "Josefin Sans", sans-serif;
+  margin-left: 10px;
+  font-size: 120%;
+  position: relative;
+  top: 9px;
+  text-decoration: none;
+  text-shadow: 1px solid black;
+  color: #ededed;
+}
