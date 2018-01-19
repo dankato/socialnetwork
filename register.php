@@ -12,9 +12,7 @@
     <link rel="stylesheet" href="assets/css/register_style.css">
     <link href="https://fonts.googleapis.com/css?family=Cabin:400,500,600,700" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="assets/js/register.js">
-
-    </script>
+    <script src="assets/js/register.js"></script>
   </head>
   <body>
 
@@ -25,7 +23,7 @@
             $(document).ready(function() {
               $("#first").hide();
               $("#second").show();
-            })
+            });
           </script>
         ';
       }
@@ -36,6 +34,7 @@
           <h1>Social Network</h1>
           Login or sign in below.
         </div>
+        <br>
         <div id="first">
           <form action="register.php" method="post">
             <input type="email" name="log_email" placeholder="Email Address" value="<?php
@@ -43,13 +42,13 @@
               echo $_SESSION['log_email'];
             }?>" required>
             <br>
-            <input type="password" name="log_password" placeholder="Password"><br>
-
+            <input type="password" name="log_password" placeholder="Password">
+            <br>
             <?php if(in_array("Email or password was not correct.<br>", $error_array)) echo "Email or password was not correct.<br>"; ?>
 
             <input type="submit" name="login_button" value="Login">
             <br>
-            <a href="#" id="signup" class="signup">Need an account? Regrister here.</a>
+            <a href="#" id="signup" class="signup">Need an account? Register here.</a>
           </form>
         </div>
 

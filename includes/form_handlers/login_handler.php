@@ -9,7 +9,7 @@
 
     if($check_login_query == 1) {
       $row = mysqli_fetch_array($check_database_query); // results from query above now stored in this var
-      $username = $row['$username']; // in the array row, username is now assigned to var
+      $username = $row['username']; // in the array row, username is now assigned to var
 
       $user_closed_query = mysqli_query($con, "SELECT * FROM users WHERE email='$email' AND user_closed='yes'");
       if(mysqli_num_rows($user_closed_query) == 1) {
