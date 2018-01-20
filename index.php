@@ -1,6 +1,12 @@
 <?php
   include("includes/header.php");
-  include ('includes/classes/User.php');
+  include('includes/classes/User.php');
+  include ('includes/classes/Post.php');
+
+  if(isset($_POST['post'])) {
+    $post = new Post($con, $userLoggedIn);
+    $post->submitPost($_POST['post_text'], 'none');
+  }
 ?>
     <!-- <h1>Starting up...</h1> -->
     <div class="user_details column">
