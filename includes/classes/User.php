@@ -17,6 +17,8 @@
       $row = mysqli_fetch_array($query);
       return $row['first_name'] . " " . $row['last_name'];
     }
-
+    public function getUsername() {
+      return $this->user['username'];
+    }
   }
 ?>
