@@ -38,7 +38,7 @@
         <a href="#"><i class="fa fa-exclamation" aria-hidden="true"></i></a>
         <a href="#"><i class="fa fa-users" aria-hidden="true"></i></a>
         <a href="#"><i class="fa fa-cog" aria-hidden="true"></i></a>
-        <a href="#"><i class="fa fa-sign-out" aria-hidden="true"></i></a>
+        <a href="includes/handlers/logout.php"><i class="fa fa-sign-out" aria-hidden="true"></i></a>
       </nav>
     </div>
     <div class="wrapper">
