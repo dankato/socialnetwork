@@ -1,5 +1,6 @@
 <?php
   include("includes/header.php");
+  include ('includes/classes/User.php');
 ?>
     <!-- <h1>Starting up...</h1> -->
     <div class="user_details column">
@@ -22,6 +23,11 @@
         <input type="submit" name="post" id="post_button" value="post">
         <hr>
       </form>
+      <?php
+        $user_obj = new User($con, $userLoggedIn);
+        echo $user_obj->getFirstAndLastName();
+      ?>
+
     </div>
     </div>
   </body>
