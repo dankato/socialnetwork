@@ -16,7 +16,13 @@
         ?>
       </div>
     </div>
-
+    <div class="main_column column">
+      <form class="post_form" action="index.php" method="post">
+        <textarea name="post_text" id="post_text" placeholder="Post a message."></textarea>
+        <input type="submit" name="post" id="post_button" value="post">
+        <hr>
+      </form>
+    </div>
     </div>
   </body>
 </html>
