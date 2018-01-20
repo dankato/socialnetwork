@@ -31,7 +31,7 @@
         <a href="index.php">Social Network</a>
       </div>
       <nav>
-        <a href="#"><?php echo $user['first_name']?></a>
+        <a href="<?php echo $userLoggedIn; ?>"><?php echo $user['first_name']?></a>
         <a href="index.php"><i class="fa fa-home" aria-hidden="true"></i></a>
         <a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i></a>
 
@@ -42,5 +42,3 @@
       </nav>
     </div>
     <div class="wrapper">
-
-    
