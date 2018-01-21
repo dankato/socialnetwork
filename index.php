@@ -41,6 +41,7 @@
       <script type="text/javascript">
         var userLoggedIn = '<?php echo $userLoggedIn; ?>';
 
+        // making call, page is currently 1, data is $_REQUEST
         $(document).ready(function() {
           $('#loading').show();
           // original ajax request for loading first post

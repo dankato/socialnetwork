@@ -45,7 +45,7 @@
       $page = $data['page'];
       $userLoggedIn = $this->user_obj->getUsername();
       if($page == 1)
-        $start = 0;
+        $start = 0; // starting point
       else
         $start = ($page - 1) * $limit;
 
