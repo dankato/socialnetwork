@@ -111,3 +111,21 @@ textarea:focus {
   padding: 5px 4px 4px 5px;
   background-color: maroon;
 }
+.status_post {
+  width: 96%;
+  min-height: 75px;
+  font-size: 15px;
+  padding: 0 5px;
+}
+.post_profile_pic {
+  float: left;
+  margin-right: 7px;
+}
+
+.post_profile_pic img {
+  border-radius: 3px;
+}
+#loading {
+  height: 100px;
+  width: 100px;
+}
