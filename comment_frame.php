@@ -54,7 +54,7 @@
     ?>
 
     <form id="comment_form" name="postComment<?php echo $post_id; ?>" action="comment_frame.php?post_id=<?php echo $post_id; ?>" method="post">
-      <textarea name="post_body"></textarea>
+      <textarea name="post_body" placeholder="Add a comment."></textarea>
       <input type="submit" name="postComment<?php echo $post_id; ?>" value="Post">
     </form>
 
@@ -145,7 +145,7 @@
           <?php echo $time_message . "<br>" . $comment_body; ?>
           <hr>
         </div>
-        
+
         <?php
       }
     }
