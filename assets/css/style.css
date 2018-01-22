@@ -93,6 +93,7 @@ nav a:hover {
   border: 1px solid black;
   font-size: 12px;
   padding: 5px;
+  cursor: pointer;
 }
 textarea:focus {
   outline: 0;
@@ -137,6 +138,7 @@ textarea:focus {
 #comment_iframe {
   max-height: 250px;
   width: 100%;
+  margin-top: 5px;
 }
 .comment_section {
   padding: 0 5px 5px 5px;
@@ -168,4 +170,11 @@ textarea:focus {
   /* font-family: "Josefin Sans", sans-serif; */
   color: white;
   border: none;
+}
+.newsfeedPostOptions {
+  padding: 0;
+  text-decoration: none;
+  color: #acacac;
+  border: none;
+  cursor: pointer;
 }

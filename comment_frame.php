@@ -148,6 +148,8 @@
 
         <?php
       }
+    } else {
+      echo "<center style='color:black;'><br><br>No comments to show.</center>";
     }
     ?>
 
