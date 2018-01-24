@@ -6,6 +6,19 @@
     <link rel="stylesheet" href="assets/css/style.css">
   </head>
   <body>
+    <style type="text/css">
+      * {
+        font-family: Arial, Helvetica, sans-serif;
+      }
+      body {
+        background-color: white;
+      }
+      form {
+        position: absolute;
+        top: 0;
+      }
+    </style>
+
     <?php
       include('includes/classes/User.php');
       include('includes/classes/Post.php');
