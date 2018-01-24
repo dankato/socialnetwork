@@ -198,3 +198,34 @@ textarea:focus {
   display: inline;
   font-size: 14px;
 }
+.profile_left img {
+  width: 90px;
+  min-width: 80px;
+  height: 90px;
+  margin: 20px;
+  border: 2px solid black;
+  border-radius: 100px;
+}
+.profile_left {
+  top: -10px;
+  width: 17%;
+  min-width: 130px;
+  max-width: 240px;
+  height: 100%;
+  float: left;
+  position: relative;
+  background-color: #b4b4b4;
+  border-right: 10px solid black;
+  color: black;
+  margin-right: 20px;
+}
+.profile_info {
+  display: list-item;
+  background-color: gray;
+  width: 100%;
+  padding: 10px 0 10px 0;
+}
+.profile_info p {
+  margin: 0 0 0 20px;
+  word-wrap: break-word;
+}
