@@ -1,5 +1,7 @@
 <?php
   require 'config/config.php';
+  include('includes/classes/User.php');
+  include('includes/classes/Post.php');
 
   // prevent users to access site without logging in first
   if (isset($_SESSION['username'])) {
@@ -36,7 +38,7 @@
         <a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i></a>
 
         <a href="#"><i class="fa fa-exclamation" aria-hidden="true"></i></a>
-        <a href="#"><i class="fa fa-users" aria-hidden="true"></i></a>
+        <a href="requests.php"><i class="fa fa-users" aria-hidden="true"></i></a>
         <a href="#"><i class="fa fa-cog" aria-hidden="true"></i></a>
         <a href="includes/handlers/logout.php"><i class="fa fa-sign-out" aria-hidden="true"></i></a>
       </nav>
