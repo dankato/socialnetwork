@@ -273,3 +273,13 @@ textarea:focus {
   border: none;
   background-color: red;
 }
+
+.delete_button {
+  height: 22px;
+  width: 22px;
+  padding: 0;
+  float: right;
+  border-radius: 3px;
+  right: -15px;
+  position: relative;
+}
