@@ -6,7 +6,7 @@ if(isset($_GET['profile_username'])) {
   $user_details_query = mysqli_query($con, "SELECT * FROM users WHERE username='$username'");
   $user_array = mysqli_fetch_array($user_details_query);
   $num_friends = (substr_count($user_array['friend_array'], ",")) - 1;
-
+}
   if(isset($_POST['remove_friend'])) {
     $user = new User($con, $userLoggedIn);
     $user->removeFriend($username);
@@ -18,7 +18,7 @@ if(isset($_GET['profile_username'])) {
   if(isset($_POST['respond_request'])) {
     header("Location: requests.php");
   }
-}
+
 ?>
   <style type="text/css">
     .wrapper {
@@ -58,8 +58,11 @@ if(isset($_GET['profile_username'])) {
     </form>
     <input type="submit" class="deep_blue" data-toggle="modal" data-target="#post_form" value="Post Something">
   </div>
-  <div class="main_column column">
-    <?php echo $username; ?>
+  
+  <div class="profile_main_column column">
+    <div class="posts_area"></div>
+    <img src="assets/images/icons/loading.gif" id="loading" alt="loading">
+
   </div>
 
   <!-- Modal -->
@@ -90,6 +93,55 @@ if(isset($_GET['profile_username'])) {
       </div>
     </div>
   </div>
+
+  <script type="text/javascript">
+    var userLoggedIn = '<?php echo $userLoggedIn; ?>';
+    var profileUsername = '<?php echo $username; ?>';
+
+    // making call, page is currently 1, data is $_REQUEST
+    $(document).ready(function() {
+      $('#loading').show();
+      // original ajax request for loading first post
+      $.ajax({
+        url: "includes/handlers/ajax_load_profile_posts.php",
+        type: "POST",
+        data: "page=1&userLoggedIn=" + userLoggedIn + "&profileUsername=" + profileUsername,
+        cache: false,
+        success: function(data) {
+          $('#loading').hide();
+          $('.posts_area').html(data);
+        }
+      });
+
+      $(window).scroll(function() {
+        var height = $('.posts_area').height();
+        var scroll_top = $(this).scrollTop();
+        var page = $('.posts_area').find('.nextPage').val();
+        var noMorePosts = $('.posts_area').find('.noMorePosts').val();
+
+        if((document.body.scrollHeight == document.body.scrollTop + window.innerHeight) && noMorePosts == 'false') {
+          $('#loading').show();
+
+          // is scroll working?
+          // alert('maybe');
+
+          var ajaxReq = $.ajax({
+            url: "includes/handlers/ajax_load_profile_posts.php",
+            type: "POST",
+            data: "page=" + page + "&userLoggedIn=" + userLoggedIn + "&profileUsername=" + profileUsername,
+            cache: false,
+            success: function(response) {
+              $('.posts_area').find('.nextPage').remove();
+              $('.posts_area').find('.noMorePosts').remove();
+              $('#loading').hide();
+              $('.posts_area').append(response);
+            }
+          });
+        }; // end of if
+        return false;
+      });
+    });
+  </script>
 
 
 
