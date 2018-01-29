@@ -293,3 +293,24 @@ textarea:focus {
 .profile_info_bottom {
   margin: 14px 0 0 14px;
 }
+#message_textarea {
+  width: 80%;
+  margin-right: 8px;
+  border-radius: 3px;
+  border: 1px solid black;
+  font-size: 12px;
+}
+
+#message_submit {
+  height: 40px;
+  width: 120px;
+  /* margin-top: 3px; */
+  margin: 0;
+  position: absolute;
+  border: none;
+  color: white;
+  background-color: pink;
+  border-radius: 3px;
+  /* font-family: "Josefin Sans", sans-serif; */
+  text-shadow: black 0.5px 0.5px 0px;
+}
