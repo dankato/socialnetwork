@@ -2,6 +2,7 @@
   require 'config/config.php';
   include('includes/classes/User.php');
   include('includes/classes/Post.php');
+  include('includes/classes/Message.php');
 
   // prevent users to access site without logging in first
   if (isset($_SESSION['username'])) {
