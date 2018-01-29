@@ -45,7 +45,7 @@
   <?php
     if($user_to != "new") {
       echo "<h4>You and <a href='$user_to'>" . $user_to_obj->getFirstAndLastName() . "</a></h4><hr><br>";
-      echo "<div class='loaded_messages'>";
+      echo "<div class='loaded_messages' id='scroll_messages'>";
         echo $message_obj->getMessages($user_to);
       echo "</div>";
     } else {
@@ -69,4 +69,8 @@
       ?>
     </form>
   </div>
+  <script>
+    var div = document.getElementById("scroll_messages");
+    div.scrollTop = div.scrollHeight;
+  </script>
 </div>
