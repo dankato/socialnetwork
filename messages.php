@@ -73,4 +73,13 @@
     var div = document.getElementById("scroll_messages");
     div.scrollTop = div.scrollHeight;
   </script>
+
+  <div class="user_details column" id="conversations">
+    <h4>Conversations</h4>
+    <div class="loaded_conversations">
+      <?php echo $message_obj->getConvos(); ?>
+      <br>
+      <a href="messages.php?u=new">New Message</a>
+    </div>
+  </div>
 </div>
