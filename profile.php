@@ -70,9 +70,59 @@ if(isset($_GET['profile_username'])) {
   </div>
 
   <div class="profile_main_column column">
-    <div class="posts_area"></div>
-    <img src="assets/images/icons/loading.gif" id="loading" alt="loading">
 
+    <ul class="nav nav-tabs" role="tablist" id="profileTabs">
+        <li class="nav-item">
+          <a class="nav-link active" href="#newsfeed_div" aria-controls="newsfeed_div" role="tab" data-toggle="tab">Newsfeed</a>
+        </li>
+        <!-- <li class="nav-item">
+          <a class="nav-link" href="#about_div" aria-controls="about_div" role="tab" data-toggle="tab">About</a>
+        </li> -->
+        <li class="nav-item">
+          <a class="nav-link" href="#messages_div" aria-controls="messages_div" role="tab" data-toggle="tab">Messages</a>
+        </li>
+        <!-- <li class="nav-item">
+          <a class="nav-link disabled" href="#">Disabled</a>
+        </li> -->
+      </ul>
+
+      <div class="tab-content">
+
+        <div role="tabpanel" class="tab-pane fade in active" id="newsfeed_div">
+          <div class="posts_area"></div>
+          <img src="assets/images/icons/loading.gif" id="loading" alt="loading">
+        </div>
+
+        <!-- <div role="tabpanel" class="tab-pane fade" id="about_div">
+
+        </div> -->
+
+        <div role="tabpanel" class="tab-pane fade" id="messages_div">
+          <?php
+            $message_obj = new Message($con, $userLoggedIn);
+              echo "<h4>You and <a href='".$username."'>" . $profile_user_obj->getFirstAndLastName() . "</a></h4><hr><br>";
+              echo "<div class='loaded_messages' id='scroll_messages'>";
+                echo $message_obj->getMessages($username);
+              echo "</div>";
+
+
+          ?>
+
+          <div class="message_post">
+            <form action="" method="post">
+                <textarea name='message_body' id='message_textarea' placeholder='Write your message...'></textarea>
+                <input type='submit' name='post_message' class='info' id='message_submit' value='Send'/>
+            </form>
+          </div>
+          <script>
+            var div = document.getElementById("scroll_messages");
+            if(div != null) {
+              div.scrollTop = div.scrollHeight;
+            }
+          </script>
+        </div>
+
+      </div>
   </div>
 
   <!-- Modal -->
