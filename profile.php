@@ -1,6 +1,8 @@
 <?php
 include("includes/header.php");
 
+$message_obj = new Message($con, $userLoggedIn);
+
 if(isset($_GET['profile_username'])) {
   $username = $_GET['profile_username'];
   $user_details_query = mysqli_query($con, "SELECT * FROM users WHERE username='$username'");
@@ -18,6 +20,24 @@ if(isset($_GET['profile_username'])) {
   if(isset($_POST['respond_request'])) {
     header("Location: requests.php");
   }
+  if(isset($_POST['post_message'])) {
+           $body = mysqli_real_escape_string($con, $_POST['message_body']);
+           $date = date("Y-m-d H:i:s");
+           $message_obj->sendMessage($username, $body, $date);
+
+           header("Location: profile.php?profile_username=$username&tab=m");
+  }
+
+  if(isset($_GET['tab']) && $_GET['tab'] == "m") {
+           $link = '#profileTabs a[href="#messages_div"]';
+
+           echo "<script>
+                   $(function() {
+                   $('" . $link ."').tab('show');
+                   history.pushState(null, null, '" . $username ."');
+                   });
+               </script>";
+   }
 
 ?>
   <style type="text/css">
@@ -99,7 +119,7 @@ if(isset($_GET['profile_username'])) {
 
         <div role="tabpanel" class="tab-pane fade" id="messages_div">
           <?php
-            $message_obj = new Message($con, $userLoggedIn);
+
               echo "<h4>You and <a href='".$username."'>" . $profile_user_obj->getFirstAndLastName() . "</a></h4><hr><br>";
               echo "<div class='loaded_messages' id='scroll_messages'>";
                 echo $message_obj->getMessages($username);
@@ -114,11 +134,17 @@ if(isset($_GET['profile_username'])) {
                 <input type='submit' name='post_message' class='info' id='message_submit' value='Send'/>
             </form>
           </div>
-          <script>
+          <!-- <script>
             var div = document.getElementById("scroll_messages");
             if(div != null) {
               div.scrollTop = div.scrollHeight;
             }
+          </script> -->
+          <script>
+              $('a[data-toggle="tab"]').on('shown.bs.tab', function () {
+                  var div = document.getElementById("scroll_messages");
+                  div.scrollTop = div.scrollHeight;
+              });
           </script>
         </div>
 
