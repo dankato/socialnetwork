@@ -41,12 +41,15 @@
       <nav>
         <a href="<?php echo $userLoggedIn; ?>"><?php echo $user['first_name']?></a>
         <a href="index.php"><i class="fa fa-home" aria-hidden="true"></i></a>
-        <a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i></a>
+        <a href="javascript:void(0);" onclick="getDropdownData('<?php $userLoggedIn; ?>', 'message')"><i class="fa fa-comment-o" aria-hidden="true"></i></a>
 
         <a href="#"><i class="fa fa-exclamation" aria-hidden="true"></i></a>
         <a href="requests.php"><i class="fa fa-users" aria-hidden="true"></i></a>
         <a href="#"><i class="fa fa-cog" aria-hidden="true"></i></a>
         <a href="includes/handlers/logout.php"><i class="fa fa-sign-out" aria-hidden="true"></i></a>
       </nav>
+      <div class="dropdown_data_window">
+        <input type="hidden" id="dropdown_data_type" value="">
+      </div>
     </div>
     <div class="wrapper">
