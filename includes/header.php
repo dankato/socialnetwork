@@ -39,10 +39,20 @@
         <a href="index.php">Social Network</a>
       </div>
       <nav>
+        <?php
+          $messages = new Message($con, $userLoggedIn);
+          $num_messages = $messages->getUnreadNumber();
+        ?>
 
         <a href="<?php echo $userLoggedIn; ?>"><?php echo $user['first_name']; ?></a>
         <a href="index.php"><i class="fa fa-home" aria-hidden="true"></i></a>
-        <a href="javascript:void(0);" onclick="getDropdownData('<?php echo $userLoggedIn; ?>', 'message')"><i class="fa fa-comment-o" aria-hidden="true"></i></a>
+        <a href="javascript:void(0);" onclick="getDropdownData('<?php echo $userLoggedIn; ?>', 'message')">
+          <i class="fa fa-comment-o" aria-hidden="true"></i>
+          <?php
+            if($num_messages > 0)
+              echo '<span class="notification_badge" id="unread_message">' . $num_messages . '</span>';
+          ?>
+        </a>
 
         <a href="#"><i class="fa fa-exclamation" aria-hidden="true"></i></a>
         <a href="requests.php"><i class="fa fa-users" aria-hidden="true"></i></a>
