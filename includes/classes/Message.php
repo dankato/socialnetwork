@@ -170,7 +170,7 @@
       if($page == 1)
         $start = 0;
       else
-        $start = ($page - 1) * limit;
+        $start = ($page - 1) * $limit;
 
       $set_viewed_query = mysqli_query($this->con, "UPDATE messages SET viewed='yes' WHERE user_to='$userLoggedIn'");
 
@@ -197,7 +197,7 @@
         else
           $count++;
 
-        $is_unread_query = mysqli_query($this->con, "SELECT opened FROM messages WHERE user_to'$userLoggedIn' AND user_from='$username' ORDER BY id DESC");
+        $is_unread_query = mysqli_query($this->con, "SELECT opened FROM messages WHERE user_to='$userLoggedIn' AND user_from='$username' ORDER BY id DESC");
         $row = mysqli_fetch_array($is_unread_query);
         $style = ($row['opened'] == 'no') ? "background-color: #DDEDFF;" : "";
 
@@ -221,7 +221,7 @@
       if($count > $limit)
         $return_string .= "<input type='hidden' class='nextPageDropdownData' value='" . ($page + 1) . "'><input type='hidden' class='noMoreDropdownData' value='false'>";
       else
-        "<input type='hidden' class='noMoreDropdownData' value='true'><p style='text-align: center;'>No more messages to load.</p>";
+        $return_string .= "<input type='hidden' class='noMoreDropdownData' value='true'><p style='text-align: center;'>No more messages to load.</p>";
       return $return_string;
     }
 }
