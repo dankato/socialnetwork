@@ -39,17 +39,59 @@
         <a href="index.php">Social Network</a>
       </div>
       <nav>
-        <a href="<?php echo $userLoggedIn; ?>"><?php echo $user['first_name']?></a>
+
+        <a href="<?php echo $userLoggedIn; ?>"><?php echo $user['first_name']; ?></a>
         <a href="index.php"><i class="fa fa-home" aria-hidden="true"></i></a>
-        <a href="javascript:void(0);" onclick="getDropdownData('<?php $userLoggedIn; ?>', 'message')"><i class="fa fa-comment-o" aria-hidden="true"></i></a>
+        <a href="javascript:void(0);" onclick="getDropdownData('<?php echo $userLoggedIn; ?>', 'message')"><i class="fa fa-comment-o" aria-hidden="true"></i></a>
 
         <a href="#"><i class="fa fa-exclamation" aria-hidden="true"></i></a>
         <a href="requests.php"><i class="fa fa-users" aria-hidden="true"></i></a>
         <a href="#"><i class="fa fa-cog" aria-hidden="true"></i></a>
         <a href="includes/handlers/logout.php"><i class="fa fa-sign-out" aria-hidden="true"></i></a>
       </nav>
-      <div class="dropdown_data_window">
-        <input type="hidden" id="dropdown_data_type" value="">
-      </div>
+      <div class="dropdown_data_window" style="height: 0px; border: none;"></div>
+      <input type="hidden" id="dropdown_data_type" value="">
+
     </div>
+
+    <script>
+      var userLoggedIn = '<?php echo $userLoggedIn; ?>';
+
+      // making call, page is currently 1, data is $_REQUEST
+      $(document).ready(function() {
+
+        $('.dropdown_data_window').scroll(function() {
+          var inner_height = $('.dropdown_data_window').innerHeight();
+          var scroll_top = $('.dropdown_data_window').scrollTop();
+          var page = $('.dropdown_data_window').find('.nextPageDropdownData').val();
+          var noMoreData = $('.dropdown_data_window').find('.noMoreDropdownData').val();
+
+          if((scroll_top + inner_height >= $('.dropdown_data_window')[0].scrollHeight) && noMoreData == 'false') {
+            // holds name of page to send to ajax request to
+            var pageName;
+            var type = $('#dropdown_data_type').val();
+
+            if(type == 'notification')
+              pageName = "ajax_load_notifications.php";
+            else if (type = 'message')
+              pageName = "ajax_load_messages.php"
+
+            var ajaxReq = $.ajax({
+              url: "includes/handlers/" + pageName,
+              type: "POST",
+              data: "page=" + page + "&userLoggedIn=" + userLoggedIn,
+              cache: false,
+              success: function(response) {
+                $('.dropdown_data_window').find('.nextPageDropdownData').remove();
+                $('.dropdown_data_window').find('.noMoreDropdownData').remove();
+                $('.dropdown_data_window').append(response);
+              }
+            })
+          }; // end of if
+          return false;
+        });
+      });
+    </script>
+
+
     <div class="wrapper">
