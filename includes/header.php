@@ -40,11 +40,15 @@
         <a href="index.php">Social Network</a>
       </div>
       <nav>
+        <!-- unread -->
         <?php
           $messages = new Message($con, $userLoggedIn);
           $num_messages = $messages->getUnreadNumber();
         ?>
-
+        <?php
+          $notifications = new Notification($con, $userLoggedIn);
+          $num_notifications = $notifications->getUnreadNumber();
+        ?>
         <a href="<?php echo $userLoggedIn; ?>"><?php echo $user['first_name']; ?></a>
         <a href="index.php"><i class="fa fa-home" aria-hidden="true"></i></a>
         <a href="javascript:void(0);" onclick="getDropdownData('<?php echo $userLoggedIn; ?>', 'message')">
@@ -55,7 +59,13 @@
           ?>
         </a>
 
-        <a href="#"><i class="fa fa-exclamation" aria-hidden="true"></i></a>
+        <a href="javascript:void(0);" onclick="getDropdownData('<?php echo $userLoggedIn; ?>', 'notification')">
+          <i class="fa fa-exclamation" aria-hidden="true"></i>
+          <?php
+            if($num_notifications > 0)
+              echo '<span class="notification_badge" id="unread_notification">' . $num_notifications . '</span>';
+          ?>
+        </a>
         <a href="requests.php"><i class="fa fa-users" aria-hidden="true"></i></a>
         <a href="#"><i class="fa fa-cog" aria-hidden="true"></i></a>
         <a href="includes/handlers/logout.php"><i class="fa fa-sign-out" aria-hidden="true"></i></a>
