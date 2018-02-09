@@ -64,17 +64,17 @@
   
         while ($row = mysqli_fetch_array($query)) {
   
-        if($num_itterations++ < $start)
-            continue;
-  
-        if($count > $limit)
-            break;
-        else
-            $count++;
+          if($num_itterations++ < $start)
+              continue;
+    
+          if($count > $limit)
+              break;
+          else
+              $count++;
   
         $user_from = $row['user_from'];
-        $query = mysqli_query($this->con, "SELECT * FROM users WHERE username='$user_from'");
-        $user_data = mysqli_fetch_array($query);
+        $user_data_query = mysqli_query($this->con, "SELECT * FROM users WHERE username='$user_from'");
+        $user_data = mysqli_fetch_array($user_data_query);
 
         // timeframe
         $date_time_now = date("Y-m-d H:i:s");
@@ -143,9 +143,11 @@
          
         $return_string .=
           "<a href='" . $row['link'] . "'>
-            <div class='notificationProfilePic'>
+            <div class='resultDisplay resultDisplayNotification' style='" . $style . "'>
+              <div class='notificationProfilePic'>
                 <img src='" . $user_data['profile_pic'] . "'>
                 <p class='timestamp_smaller' id='gray'>" . $time_message . "</p>" . $row['message'] . "
+              </div>
             </div>
           </a>";
         }

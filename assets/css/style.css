@@ -417,3 +417,24 @@ textarea:focus {
   left: 7px;
   top: -5px;
 }
+.resultDisplayNotification {
+  height: auto;
+  color: #1485BD;
+  padding-bottom: 14px;
+}
+
+.resultDisplayNotification img {
+  height: 40px;
+  border-radius: 3px;
+  margin: 1px 12px 0 2px;
+  float: left;
+}
+
+.timestamp_smaller {
+  font-size: 85%;
+  margin: 0;
+}
+
+.noMoreDropdownData p {
+  margin-top: 9px;
+}
