@@ -3,6 +3,7 @@
   include('includes/classes/User.php');
   include('includes/classes/Post.php');
   include('includes/classes/Message.php');
+  include('includes/classes/Notification.php');
 
   // prevent users to access site without logging in first
   if (isset($_SESSION['username'])) {
