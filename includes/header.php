@@ -49,6 +49,11 @@
           $notifications = new Notification($con, $userLoggedIn);
           $num_notifications = $notifications->getUnreadNumber();
         ?>
+        <?php
+          $user_obj = new User($con, $userLoggedIn);
+          $num_requests = $user_obj->getNumberOfFriendRequests();
+        ?>
+        
         <a href="<?php echo $userLoggedIn; ?>"><?php echo $user['first_name']; ?></a>
         <a href="index.php"><i class="fa fa-home" aria-hidden="true"></i></a>
         <a href="javascript:void(0);" onclick="getDropdownData('<?php echo $userLoggedIn; ?>', 'message')">
@@ -66,7 +71,13 @@
               echo '<span class="notification_badge" id="unread_notification">' . $num_notifications . '</span>';
           ?>
         </a>
-        <a href="requests.php"><i class="fa fa-users" aria-hidden="true"></i></a>
+        <a href="requests.php">
+          <i class="fa fa-users" aria-hidden="true"></i>
+          <?php
+            if($num_requests > 0)
+              echo '<span class="notification_badge" id="unread_requests">' . $num_requests . '</span>';
+          ?>
+        </a>
         <a href="#"><i class="fa fa-cog" aria-hidden="true"></i></a>
         <a href="includes/handlers/logout.php"><i class="fa fa-sign-out" aria-hidden="true"></i></a>
       </nav>
