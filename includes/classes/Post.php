@@ -32,7 +32,10 @@
         // return post id just submitted
         $returned_id = mysqli_insert_id($this->con);
         // insert notifs
-
+        if($user_to != 'none') {
+          $notification = new Notification($this->con, $userLoggedIn);
+          $notification->insertNotification($returned_id, $user_to, "profile_post");
+        }
         // update post count for user
         $num_posts = $this->user_obj->getNumPosts();
         $num_posts++;
