@@ -38,5 +38,123 @@
        $link = "post.php?id=" . $post_id;
        $insert_query = mysqli_query($this->con, "INSERT INTO notifications VALUES('', '$user_to', '$userLoggedIn', '$message', '$link', '$date_time', 'no', 'no')");
     }
+    public function getNotifications($data, $limit) {
+
+        $page = $data['page'];
+        $userLoggedIn = $this->user_obj->getUsername();
+        $return_string = "";
+  
+        if($page == 1)
+          $start = 0;
+        else
+          $start = ($page - 1) * $limit;
+  
+        $set_viewed_query = mysqli_query($this->con, "UPDATE notifications SET viewed='yes' WHERE user_to='$userLoggedIn'");
+  
+        $query = mysqli_query($this->con, "SELECT * FROM notifications WHERE user_to='$userLoggedIn' ORDER BY id DESC");
+  
+        // check to see if there are results
+        if(mysqli_num_rows($query) == 0) {
+            echo "You have no notifications.";
+            return;
+        }
+
+        $num_itterations = 0; // # of notifs seen
+        $count = 1; // # of notifs posted
+  
+        while ($row = mysqli_fetch_array($query)) {
+  
+        if($num_itterations++ < $start)
+            continue;
+  
+        if($count > $limit)
+            break;
+        else
+            $count++;
+  
+        $user_from = $row['user_from'];
+        $query = mysqli_query($this->con, "SELECT * FROM users WHERE username='$user_from'");
+        $user_data = mysqli_fetch_array($query);
+
+        // timeframe
+        $date_time_now = date("Y-m-d H:i:s");
+        $start_date = new DateTime($row['datetime']); // time of post
+        $end_date = new DateTime($date_time_now); // current time
+        $interval = $start_date->diff($end_date); // difference between dates
+        if($interval->y >= 1) { // if 1 year ago or over
+            if($interval == 1)
+                $time_message = $interval->y . " year ago.";
+            else {
+                $time_message = $interval->y . " years ago";
+            }
+        }
+        else if($interval-> m >= 1) {
+              if($interval->d == 0) {
+                $days = " ago.";
+              }
+              else if($interval->d == 1) {
+                $days = $interval->d . " day ago.";
+              }
+              else {
+                $days = $interval->d . " days ago.";
+              }
+
+              if($interval->m == 1) {
+                $time_message = $interval->m . " month". $days;
+              } else {
+                $time_message = $interval->m . " months". $days;
+              }
+        }
+        else if($interval->d >= 1) {
+              if($interval->d == 1) {
+                $time_message = "Yesterday.";
+              }
+              else {
+                $time_message = $interval->d . " days ago.";
+              }
+        }
+        else if($interval->h >= 1) {
+              if($interval->h == 1) {
+                $time_message = $interval->h . " hour ago.";
+              }
+              else {
+                $time_message = $interval->h . " hours ago.";
+              }
+        }
+        else if($interval->i >= 1) {
+              if($interval->i == 1) {
+                $time_message = $interval->i . " minute ago.";
+              }
+              else {
+                $time_message = $interval->i . " minutes ago.";
+              }
+        }
+        else {
+              if($interval->s < 30) {
+                $time_message = "Just now.";
+              }
+              else {
+                $time_message = $interval->s . " seconds ago.";
+              }
+        }
+
+        $opened = $row['opened'];
+        $style = ($row['opened'] == 'no') ? "background-color: #DDEDFF;" : "";
+         
+        $return_string .=
+          "<a href='" . $row['link'] . "'>
+            <div class='notificationProfilePic'>
+                <img src='" . $user_data['profile_pic'] . "'>
+                <p class='timestamp_smaller' id='gray'>" . $time_message . "</p>" . $row['message'] . "
+            </div>
+          </a>";
+        }
+        // if posts were loaded
+        if($count > $limit)
+          $return_string .= "<input type='hidden' class='nextPageDropdownData' value='" . ($page + 1) . "'><input type='hidden' class='noMoreDropdownData' value='false'>";
+        else
+          $return_string .= "<input type='hidden' class='noMoreDropdownData' value='true'><p style='text-align: center;'>No more notifications to load.</p>";
+        return $return_string;
+    }
   }
 ?>
