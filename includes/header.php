@@ -39,6 +39,20 @@
       <div class="logo">
         <a href="index.php">Social Network</a>
       </div>
+
+      <div class="search">
+        <form action="search.php" method="get" name="search_form">
+          <input type="text" onkeyup="getLiveSearchUsers(this.value, '<?php $userLoggedIn; ?>')" name="q" placeholder="Search..." autocomplete="off" id="search_text_input">
+          <div class="button_holder">
+            <img src="assets/images/icons/mag-glass.png" alt="search">
+          </div>
+        </form>
+
+        <div class="search_results"></div>
+        <div class="search_results_footer_empty"></div>
+
+      </div>
+
       <nav>
         <!-- unread -->
         <?php
