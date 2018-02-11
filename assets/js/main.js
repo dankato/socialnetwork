@@ -28,6 +28,21 @@ $(document).ready(function() {
   });
 });
 
+// remove dropdown menu when clicking outside
+$(document).click(function(e) {
+  if(e.target.class != "search_results" && e.target.id != "search_text_input") {
+    $(".search_results").html("");
+    $('.search_results_footer').html("");
+    $('.search_results_footer').toggleClass("search_results_footer_empty");
+    $('.search_results_footer').toggleClass("search_results_footer");
+  }
+  if(e.target.class != "dropdown_data_window") {
+    $(".dropdown_data_window").html("");
+    $(".dropdown_data_window").css({"padding": "0", "height": "0"});
+
+  }
+});
+
 function getUsers(value, user) {
   $.post(
     "includes/handlers/ajax_friend_search.php",
@@ -81,7 +96,7 @@ function getLiveSearchUsers(value, user) {
     $('.search_results').html(data);
     $('.search_results_footer').html("<a href='search.php?p=" + value + "'>See All Results</a>");
 
-    if(data = "") {
+    if(data == "") {
       $(".search_results_footer").html("");
       $(".search_results_footer").toggleClass("search_results_footer_empty");
       $(".search_results_footer").toggleClass("search_results_footer");
