@@ -362,7 +362,7 @@ textarea:focus {
 }
 .resultDisplay {
   padding: 5px 5px 0 5px;
-  height: 60px;
+  height: 72px;
   border-bottom: 1px solid #d3d3d3;
 }
 .resultDisplay a {
@@ -448,9 +448,11 @@ textarea:focus {
   float: left;
   height: 23px;
   outline: 0;
-  width: 120px;
+  width: 100px;
   border-top-right-radius: 0;
-  border-bottom-right-radius: 0;  
+  border-bottom-right-radius: 0;
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
 }
 
 .button_holder {
@@ -468,4 +470,25 @@ textarea:focus {
 .button_holder img {
   margin-top: 1px;
   width: 20px;
+}
+
+.search_results {
+  background-color: white;
+  border: 1px solid #dadada;
+  border-bottom: none;
+  border-top: none;
+  margin-top: 21px;
+}
+
+.search_results_footer {
+  padding: 7px 4px 0 4px;
+  height: 30px;
+  border: 1px solid #dadada;
+  border-top: none;
+  background-color: pink;
+  text-align: center;
+}
+
+.search_results_footer a {
+  color: white;
 }
