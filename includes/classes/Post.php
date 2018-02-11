@@ -17,6 +17,20 @@
       // is post empty?, delete all spaces
       $check_empty = preg_replace('/\s+/', '', $body);
       if($check_empty != "") {
+
+        // youtube check
+        $body_array = preg_split("/\s+/", $body);
+        foreach($body_array as $key => $value) {
+          if(strpos($value, "www.youtube.com/watch?v=") !== false) {
+            $link = preg_split("!&!", $value);
+            $value = preg_replace("!watch\?v=!", "embed/", $link[0]);
+            $value = "<br><iframe width=\'420\' height=\'315\' src=\'" . $value . "\'></iframe><br>";
+            $body_array[$key] = $value;
+          }
+        }
+        $body = implode(" ", $body_array);
+
+
         // current date and time$
         $date_added = date("Y-m-d H:i:s");
         // get username
