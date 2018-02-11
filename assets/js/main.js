@@ -8,7 +8,7 @@ $(document).ready(function() {
   });
 
   $('.button_holder').on('click', function() {
-    document.search_form
+    document.search_form.submit();
   })
 
   // profile post button
@@ -71,4 +71,20 @@ function getDropdownData(user, type) {
       border: "none"
     });
   }
+}
+function getLiveSearchUsers(value, user) {
+  $.post("includes/handlers/ajax_search.php", { query: value, userLoggedIn: user }, function(data) {
+    if($(".search_results_footer_empty")[0]) {
+      $(".search_results_footer_empty").toggleClass("search_results_footer");
+      $(".search_results_footer_empty").toggleClass("search_results_footer_empty");
+    }
+    $('.search_results').html(data);
+    $('.search_results_footer').html("<a href='search.php?p=" + value + "'>See All Results</a>");
+
+    if(data = "") {
+      $(".search_results_footer").html("");
+      $(".search_results_footer").toggleClass("search_results_footer_empty");
+      $(".search_results_footer").toggleClass("search_results_footer");
+    }
+  });
 }
