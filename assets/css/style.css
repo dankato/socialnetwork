@@ -448,7 +448,7 @@ textarea:focus {
   float: left;
   height: 23px;
   outline: 0;
-  width: 200px;
+  width: 120px;
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;  
 }
