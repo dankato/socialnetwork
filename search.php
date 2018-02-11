@@ -58,7 +58,7 @@
                 // generate button depending on friend status
                 if($user_obj->isFriend($row['username'])) {
                     $button = "<input type='submit' name='" . $row['username'] . "' class='danger' value='Remove Friend'>";
-                } else if ($user_obj->didRecieveRequest($row['username'])) {
+                } else if($user_obj->didReceiveRequest($row['username'])) {
                     $button = "<input type='submit' name='" . $row['username'] . "' class='warning' value='Respond to request'>";
                 } else if($user_obj->didSendRequest($row['username'])) {
                     $button = "<input class='default' value='Request Sent'>";
@@ -69,7 +69,33 @@
 
                 // button forms
             }
-        }
+
+            echo "
+                <div class='search_result'>
+                    <div class='searchPageFriendButtons'>
+                        <form action='' method='post'>
+                            " . $button . " <br>
+                        </form>
+                    </div>
+
+                    <div class='result_profile_pic'>
+                        <a href='" . $row['username'] . "'>
+                            <img src='" . $row['profile_pic'] . "' style='height: 100px;'>
+                        </a>
+                    </div>
+
+                        <a href='" . $row['username'] . "'>
+                            " . $row['first_name'] . " " . $row['last_name'] . "
+                            <p id='gray'> " . $row['username'] . "</p>
+                        </a>
+                        <br>
+                        " . $mutual_friends . "
+                        <br>
+                    
+                </div>
+                <hr>
+            ";
+        } // end of while loop
     }
 ?>
 
