@@ -36,7 +36,7 @@ $(document).click(function(e) {
     $('.search_results_footer').toggleClass("search_results_footer_empty");
     $('.search_results_footer').toggleClass("search_results_footer");
   }
-  if(e.target.class != "dropdown_data_window") {
+  if(e.target.className != "dropdown_data_window") {
     $(".dropdown_data_window").html("");
     $(".dropdown_data_window").css({"padding": "0", "height": "0"});
 

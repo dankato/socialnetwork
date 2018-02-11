@@ -471,17 +471,20 @@
 
 
               ?>
-              <script>
+              <script> 
                 function toggle<?php echo $id; ?>() {
+
                   var target = $(event.target);
-                  if(!target.is("a")) {
+                  if (!target.is("a")) {
                     var element = document.getElementById("toggleComment<?php echo $id; ?>");
-                    if(element.style.display == "block")
+
+                    if(element.style.display == "block") 
                       element.style.display = "none";
-                    else
+                    else 
                       element.style.display = "block";
                   }
                 }
+
               </script>
 
               <?php
@@ -577,7 +580,7 @@
     							<hr>";
 
             ?>
-              <script>
+        <script>
                 $(document).ready(function() {
                   $('#post<?php echo $id; ?>').on('click', function() {
                     bootbox.confirm("Are you sure you want to delete this post?", function(result) {
@@ -587,7 +590,7 @@
                     });
                   });
                 });
-              </script>
+          </script>
           <?php
           } else {
             echo "<p>You are only able to view posts from friends.</p>";
@@ -599,6 +602,5 @@
       }
       echo $str;
     }
-
   }
 ?>

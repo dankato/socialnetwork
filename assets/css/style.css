@@ -471,7 +471,7 @@ textarea:focus {
   margin-top: 1px;
   width: 20px;
 }
-
+/* drop down menu */
 .search_results {
   background-color: white;
   border: 1px solid #dadada;
@@ -492,3 +492,29 @@ textarea:focus {
 .search_results_footer a {
   color: white;
 }
+
+.search_result {
+  padding: 10px;
+  height: 100px;
+}
+
+.searchPageFriendButtons {
+  float: right;
+}
+
+.searchPageFriendButtons input[type="submit"] {
+  border: none;
+  padding: 7px 12px;
+  border-radius: 3px;
+  color: white;
+}
+
+.result_profile_pic {
+  float: left;
+  margin-right: 10px;
+}
+
+#search_hr {
+  margin-bottom: 0;
+}
+
