@@ -92,7 +92,7 @@
               echo '<span class="notification_badge" id="unread_requests">' . $num_requests . '</span>';
           ?>
         </a>
-        <a href="#"><i class="fa fa-cog" aria-hidden="true"></i></a>
+        <a href="settings.php"><i class="fa fa-cog" aria-hidden="true"></i></a>
         <a href="includes/handlers/logout.php"><i class="fa fa-sign-out" aria-hidden="true"></i></a>
       </nav>
       <div class="dropdown_data_window" style="height: 0px; border: none;"></div>
